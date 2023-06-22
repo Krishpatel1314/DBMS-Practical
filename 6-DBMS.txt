@@ -1,0 +1,32 @@
+1)
+select curdate() 'date';
+--------------------------------------------------
+2)
+select emp_no,emp_name,emp_sal,
+round(1.15*emp_sal) as 'New_Salary'
+from employee;
+--------------------------------------------------
+3)
+select emp_no,emp_name,emp_sal,
+round(1.15*emp_sal) as 'New_Salary',
+round(1.15*emp_sal)- emp_sal as 'Increment'
+from employee;
+--------------------------------------------------
+4)
+select initcap(emp_name) as 'Name',
+length(emp_name) as 'Length'
+from employee
+where emp_name like 'J%' or emp_name like 'A%' or emp_name like 'M%'
+order by emp_name;
+--------------------------------------------------
+5)
+select emp_name||"earns"||emp_sal||"monthly" as emp
+from employee;
+--------------------------------------------------
+select emp_name,doj,round(months_between(sysdate,doj)) as m_from_doj, to_char(doj,'day')
+as d_doj from employee;
+----------------------------
+
+------------------------------
+8)
+select sum(emp_sal+emp_comm)as "compensation" from employee;

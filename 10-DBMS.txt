@@ -1,0 +1,51 @@
+1)
+update deposit 
+set amount=amount+(amount*0.1);
+-----------------------------------------------------------------
+2)
+update deposit 
+set amount=amount+(amount*0.1)
+where bname='vrce';
+-----------------------------------------------------------------
+3)
+update deposit 
+set amount=amount+(amount*0.1)
+where cname in(select cname from customers where city='Nagpur') and
+bname in(select bname from branch where city='Bombay');
+//no changes
+-----------------------------------------------------------------
+4)//
+update employee
+set dept_no=5
+where emp_no=104;
+-----------------------------------------------------------------
+5)
+UPDATE deposit
+SET Amount = amount-10
+where cname='Anil' and bname=(select bname where cname='sunil');
+
+UPDATE deposit
+SET Amount = amount-10
+where cname='sunil' and bname=(select bname where cname='anil');
+-----------------------------------------------------------------
+6)
+update deposit
+set amount=amount+100
+where cname in (select cname from(select cname from deposit where(bname,amount)
+in (select bname,max(amount) from deposit group by bname))as a);
+
+--------------------------------------------------------------------
+7)
+delete from deposit 
+where bname in(select bname from(select bname from deposit
+group by bname having count(cname) between 1 and 3)as a);
+
+--------------------------------------------------------------------
+8)
+delete from deposit 
+where cname='vijay';
+
+--------------------------------------------------------------------
+9)
+delete from borrow where bname in(select bname from
+(select bname from borrow group by bname having avg(amount)<1000)as a);

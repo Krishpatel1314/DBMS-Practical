@@ -1,0 +1,53 @@
+1)
+SELECT SUM(AMOUNT) "AMOUNT" 
+FROM DEPOSIT 
+WHERE ADATE > '1996-01-01';
+--------------------------------------------------------------------
+2)
+select sum(d.amount)
+from deposit d, customers c,borrow b
+where c.city='nagpur' and  c.cname = d.cname and c.cname = b.cname;
+--------------------------------------------------------------------
+3)
+select max(d.amount)
+from deposit d, customers c
+where c.city='bombay' and  c.cname = d.cname;
+--------------------------------------------------------------------
+4)
+select max(emp_sal)"maximun",sum(emp_sal)"sum",min(emp_sal)"minimun",round(avg(emp_sal)) as "Average"
+from employee;
+--------------------------------------------------------------------
+5)
+select max(emp_sal)-min(emp_sal)"difference"
+from employee;
+---------------------------------------------------------------------
+6)
+select count(emp_name)
+from employee
+where hire_date like '1995%' or hire_date like '1996%' or hire_date like '1997%'or hire_date like '1998%';
+-----------------------------------------------------------------------
+7)
+select avg(emp_sal)
+from employee
+group by dept_no;
+-----------------------------------------------------------------------
+8)
+select dept_no,sum(emp_sal)
+from employee
+group by dept_no;
+-----------------------------------------------------------------------
+9)
+select avg(emp_sal)
+from employee
+group by dept_no having avg(emp_sal)>2000;
+-----------------------------------------------------------------------
+10)
+SELECT JOB_title , MAX_SAL 
+FROM JOB 
+WHERE MAX_SAL > 3000 ORDER BY (MAX_SAL);
+-----------------------------------------------------------------------
+11)
+select d.bname,sum(d.amount)
+from deposit d, branch b
+where b.bname=d.bname and b.city='bombay'
+group by d.bname having sum(d.amount)>5000;

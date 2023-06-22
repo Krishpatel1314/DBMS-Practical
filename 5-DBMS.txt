@@ -1,0 +1,67 @@
+1)
+select sum(amount)
+from deposit;
+------------------------------------------
+2)
+select sum(amount)
+from borrow
+where bname='karolbagh';
+------------------------------------------
+3)
+select max(amount)
+from borrow
+where bname='vrce';
+------------------------------------------
+4)
+select count(cname)
+from customers;
+------------------------------------------
+5)
+select count(distinct city)
+from customers;
+------------------------------------------
+6)
+create table supplier as select*from employee;
+                    OR
+SQL+==>create table supplier1(sup_no,sup_name,sup_sal,sup_comm,dept_no) as select*from employee;
+------------------------------------------
+7)
+create table sup1 as select emp_no, emp_name 
+from employee;
+                    OR
+SQL+==>create table sup1(sup_no,sup_name) as select emp_no, emp_name 
+from employee;
+------------------------------------------
+8)
+create table sup2 like employee;
+------------------------------------------
+9)
+insert into sup2
+select*from employee
+where emp_name like '_n___';
+-------------------------------------------
+10)
+delete from sup1;
+-------------------------------------------
+11)
+delete from supplier
+where emp_no=103;
+-------------------------------------------
+12)
+alter table sup2
+rename to sup3;
+      OR
+SQL+==>rename sup2 to sup3;
+-------------------------------------------
+13)
+drop table sup1;
+-------------------------------------------
+14)
+update employee
+set dept_no=10
+where emp_name like '_m%';
+-------------------------------------------
+15)
+update employee
+set emp_name='Krish'
+where emp_no=103;

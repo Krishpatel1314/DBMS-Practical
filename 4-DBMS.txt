@@ -1,0 +1,96 @@
+dbms_4
+-----------
+CREATE TABLE JOB
+(JOB_ID VARCHAR(15),JOB_TITLE VARCHAR(30),
+MIN_SAL DECIMAL(7,2),MAX_SAL DECIMAL(7,2));
+
+INSERT INTO JOB(JOB_ID,JOB_TITLE,MIN_SAL,MAX_SAL)
+VALUES('IT_PROG','PROGRAMMER',4000,10000),
+('MK_MGR','MARKETING MANAGER',9000,15000),
+('FI_MGR','FINANCE MANAGER',8200,12000),
+('FI_ACC','ACCOUNT',4200,9000),
+('LEC','LECTURER',6000,17000),
+('COMP_OP','COMPUTER OPERATOR',1500,3000);
+
+---------------------------------------------------
+CREATE TABLE EMPLOYEE
+(EMP_NO INT(3),EMP_NAME VARCHAR(30),EMP_SAL DECIMAL(8,2),
+EMP_COMM DECIMAL(6,1),DEPT_NO INT(3),HIRE_DATE DATE);
+
+INSERT INTO EMPLOYEE(EMP_NO,EMP_NAME,EMP_SAL,EMP_COMM,DEPT_NO,HIRE_DATE)
+VALUES(101,'SMITH',800,NULL,20,'1999-06-01'),
+(102,'SNEHAL',1600,300,25,'2005-03-28'),
+(103,'ADAMA',1100,0,20,'2003-08-03'),
+(104,'AMAN',3000,NULL,15,'1995-12-17'),
+(105,'ANITA',5000,50000,10,'2000-11-18'),
+(106,'SNEHA',2450,24500,10,'1993-04-05'),
+(107,'ANAMIKA',2975,NULL,30,'2010-02-23');
+
+----------------------------------------------------------------
+CREATE TABLE DEPOSIT
+(A_NO VARCHAR(5),CNAME VARCHAR(15),BNAME VARCHAR(10),
+AMOUNT DECIMAL(7,2),A_DATE DATE);
+
+INSERT INTO DEPOSIT(A_NO,CNAME,BNAME,AMOUNT,A_DATE)
+VALUES(101,'ANIL','ANDHERI',7000,'2006-01-01'),
+(102,'SUNIL','VIRAR',5000,'2006-07-15'),
+(103,'JAY','VILLEPARLE',6500,'2006-03-12'),
+(104,'VIJAY','ANDHERI',8000,'2006-09-17');
+
+-----------------------------------------------------------
+CREATE TABLE BORROW
+(LOANNO VARCHAR(5),CNAME VARCHAR(15), BNAME VARCHAR(10),
+AMOUNT DECIMAL(7,2));
+
+
+--------------------------------------------------
+1)
+select*from employee;
+select*from job;
+select*from deposit;
+--------------------------------------------------
+2)
+select a_no, amount
+from deposit
+where a_date between '2006-01-01' and '2006-07-25';
+---------------------------------------------------
+3)
+select*from job
+where min_sal>4000;
+---------------------------------------------------
+4)
+select emp_name AS Name_of_Employee, emp_sal
+from employee
+where dept_no='20';
+---------------------------------------------------
+5)
+select emp_no,emp_name,dept_no
+from employee
+where dept_no in(10,20);
+--------------------------------------------------
+                     LIKE
+--------------------------------------------------
+1)
+select*from employee 
+where emp_name like 'A_a%';
+----------------------------------------------------
+2)
+select emp_name, emp_no,emp_sal
+from employee
+where emp_name like 'Ani__';
+---------------------------------------------------
+3)
+select*from employee
+where emp_name like '_n___%' and emp_comm is not null;
+----------------------------------------------------------
+4)
+select*from employee
+where emp_name like '__a%' and emp_comm is null;
+--------------------------------------------------
+5)
+select*from employee
+where emp_name like '%\_%';
+        or
+select*from job
+where job_id like '%\_%';
+

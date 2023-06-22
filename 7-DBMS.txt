@@ -1,0 +1,64 @@
+1)
+select d.actno,d.cname,d.amount,d.adate,b.bname,b.city,c.city
+from deposit d, customers c,branch b
+where d.cname=c.cname and d.bname=b.bname and d.cname='anil';
+--------------------------------------------------------------------
+2)
+select c.cname
+from deposit d, customers c,borrow b
+where c.city='nagpur' and  c.cname = d.cname and c.cname = b.cname;
+--------------------------------------------------------------------
+3)
+select c.city as "City Name",c.cname
+from branch b, customers c,deposit d
+where c.city=b.city and c.cname=d.cname and b.bname=d.bname;
+--------------------------------------------------------------------
+create table department
+(dept_no int(5),
+dept_name varchar(20),
+dept_loc varchar(20),
+m_no int(5),
+job_id varchar(20));
+
+insert into department(dept_no,dept_name,dept_loc,m_no,job_id)
+values(20,'CE','Newyork',2,'IT_PROG'),
+(10,'IT','Vadodara',1,'MK_MGR'),
+(30,'Civil','Newyork',3,'FI_MGR'),
+(35,'EC','Ahmedabad',2,'FI_ACC'),
+(25,'ME','Surat',1,'LEC'),
+(45,'ME','Vadodara',3,'COMP_OP');
+--------------------------------------------------------------------
+create table manager(
+m_no int(5),
+m_name varchar(25));
+
+insert into manager(m_no,m_name)
+values(1,'Rahul'),
+(2,'Kaushal'),
+(3,'Bharat');
+--------------------------------------------------------------------
+4)
+select e.emp_name,e.dept_no,d.dept_name
+from employee e, department d
+where e.dept_no=d.dept_no;
+--------------------------------------------------------------------
+5)
+select j.job_id,j.job_title,d.dept_no,d.dept_loc
+from job j,department d
+where j.job_id=d.job_id and d.dept_no=30;
+--------------------------------------------------------------------
+6)
+select e.emp_name,d.dept_no,d.dept_name
+from employee e, department d
+where d.dept_loc='newyork' and e.dept_no=d.dept_no ;
+--------------------------------------------------------------------
+7)
+select e.emp_name"EMP#",e.emp_no,m.m_name"MGR#",m.m_no
+from manager m,employee e,department d
+where m.m_no=d.m_no and d.dept_no=e.dept_no;
+--------------------------------------------------------------------
+8)
+SELECT EMP_NAME,hire_date
+FROM EMPLOYEE 
+WHERE HIRE_DATE > (SELECT HIRE_DATE FROM EMPLOYEE WHERE EMP_NAME='SCOTT');
+

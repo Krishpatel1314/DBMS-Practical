@@ -1,0 +1,58 @@
+1)
+select  emp_name
+From  employee
+Where dept_no in (select dept_no from employee where emp_name like 'SCOTT') and    
+emp_name!='SCOTT';
+-------------------------------------------------------------------------------
+2)
+select d.cname , d.bname
+from deposit d , branch b
+where d.bname=b.bname and b.city in(select b.city from branch b, deposit d 
+where b.bname=d.bname and d.cname='Sunil');
+-------------------------------------------------------------------------------
+3)
+select d.actno,d.bname,d.amount,d.adate,b.loanno,b.bname,b.amount
+from deposit d,borrow b,customers c
+where c.cname=d.cname and d.cname=b.cname and c.city in(select city from customers where cname='Pramod');
+-------------------------------------------------------------------------------
+4)
+select emp_no,emp_name
+from employee
+where emp_sal>(select avg(emp_sal) from employee)
+order by emp_sal;
+--------------------------------------------------------------------
+5)
+select d.cname
+from deposit d,customers c
+where d.cname=c.cname and c.city in (select c1.city from deposit d1, customers c1 where d1.cname=c1.cname and d1.cname='anil')
+and d.amount>2000;
+--------------------------------------------------------------------
+6)
+select emp_name,emp_sal
+from employee
+
+
+--------------------------------------------------------------------
+7)
+select d.dept_no,d.dept_name,j.job_title
+from department d,job j,employee e
+where d.dept_no=e.dept_no and j.job_title='account';
+--------------------------------------------------------------------
+8)
+select bname 
+from deposit
+group by bname having count(bname)=(select max(count(cname)) from deposit group by bname);
+				OR
+select bname from deposit
+group by bname having count(bname)>=ALL(select count(cname) from deposit group by bname);
+--------------------------------------------------------------------
+9)
+select city 
+from branch
+group by city having count(bname)>ALL(select count(city) from branch group by bname);
+--------------------------------------------------------------------
+10)
+select d.cname,c.city
+from customers c,deposit d
+where c.city like (select city from customers group by city having count(cname)>=ALL(select count(cname)
+from customers group by city)and c.cname=d.cname);
